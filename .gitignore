@@ -45,6 +45,7 @@ nbproject
 .project
 .settings
 target/
+*~
 
 .metadata
 bin/
