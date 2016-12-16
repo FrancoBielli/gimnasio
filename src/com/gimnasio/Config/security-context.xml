@@ -15,10 +15,17 @@
 			password-parameter="password" username-parameter="email"
 			authentication-failure-url="/login?error=true" />
 		<security:logout invalidate-session="true" logout-url="/logout" />
+		<security:remember-me token-validity-seconds="7200"
+			user-service-ref="customUserDetailsService" />
 	</security:http>
 
 	<security:authentication-manager>
-		<security:authentication-provider>
-		</security:authentication-provider>
+		<security:authentication-provider ref="customAuthenticationProvider"/>
 	</security:authentication-manager>
+	
+	<bean id="customAuthenticationProvider"	class="com.gimnasio.Config.CustomAuthenticationProvider" />
+
+	<bean id="customUserDetailsService" class="com.gimnasio.Config.CustomUserDetailsService"/>
+	
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
 </beans>

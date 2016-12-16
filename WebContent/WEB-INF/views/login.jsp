@@ -23,6 +23,10 @@
             <td><input type='password' name='password' /></td>
          </tr>
          <tr>
+            <td>Recordarme:</td>
+            <td><input type='checkbox' name='_spring_security_remember_me' checked="checked" /></td>
+         </tr>
+         <tr>
             <td><input name="submit" type="submit" value="Aceptar" /></td>
          </tr>
       </table>

@@ -16,7 +16,7 @@ import com.gimnasio.Dao.UsuarioDAO;
 import com.gimnasio.Pojo.Usuario;
 
 @Service("customUserDetailsService")
-public class CustomUserDetailService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UsuarioDAO usuarioDAO;
@@ -37,7 +37,7 @@ public class CustomUserDetailService implements UserDetailsService {
 			throw new UsernameNotFoundException("No existe un usuario con ese correo");
 		}
 		
-		return null;
+		//return null;
 	}
 
 }
