@@ -30,7 +30,7 @@
 		</tr>
 		<tr>
 			<td>Rol</td>
-			<td><c:out value="${usuario.getRol()}"/></td>
+			<td><c:out value="${usuario.getPermiso()}"/></td>
 		</tr>
 		<tr>
 			<td>Activo</td>

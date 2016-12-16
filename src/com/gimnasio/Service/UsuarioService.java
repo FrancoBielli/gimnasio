@@ -3,6 +3,7 @@ package com.gimnasio.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.gimnasio.Dao.UsuarioDAO;
@@ -13,6 +14,9 @@ public class UsuarioService {
 		
 	@Autowired
 	private UsuarioDAO usuarioDAO;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	public Usuario findById(int id)
 	{
@@ -26,6 +30,8 @@ public class UsuarioService {
 	
 	public void saveOrUpdate(Usuario usuario)
 	{
+		String passwordUsuario = usuario.getPassword();
+		usuario.setPassword(passwordEncoder.encode(passwordUsuario));
 		if(usuario.getId() == 0)
 		{
 			usuarioDAO.save(usuario);
