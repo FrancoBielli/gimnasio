@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gimnasio.Pojo.Rutina;
 import com.gimnasio.Service.RutinaService;
@@ -103,5 +106,42 @@ public class RutinaController {
 		rutinaService.delete(rutina);
 		return "redirect:/rutina/";
 	}
+	
+	@RequestMapping(value ="{id}/asignarDias", method = RequestMethod.GET)
+	public String getAsignarDias(Model model, @PathVariable("id") int id)
+	{
+		int idRutina = id;
+		int dias = 0;
+		int semanas = 0;
+		int ejerciciosPorDia = 0;
+		model.addAttribute("dias", dias);
+		model.addAttribute("semanas", semanas);
+		model.addAttribute("ejerciciosPorDia", ejerciciosPorDia);
+		model.addAttribute("idRutina", idRutina);
+		return "rutina/asignarDias";
+	}
+	
+	@RequestMapping(value ="/asignarDias", method = RequestMethod.POST)
+	public String AsignarDias(Model model, @RequestParam("dias") int dias, 
+			@RequestParam("semanas") int semanas, @RequestParam("ejerciciosPorDia") int ejerciciosPorDia,
+			@RequestParam("idRutina") int idRutina, RedirectAttributes redirectAttributes)
+	{
+		int totalDias = dias*semanas;
+		System.out.println(dias + " " + semanas + " " + ejerciciosPorDia + " " + idRutina);
+		redirectAttributes.addFlashAttribute("totalDias", totalDias);
+		redirectAttributes.addFlashAttribute("ejerciciosPorDia", ejerciciosPorDia);
+		return "rutina/" + idRutina + "/asignarEjercicios";
+	}
+	
+	@RequestMapping(value="{id}/asignarEjercicios", method = RequestMethod.GET)
+	public String getAsignarEjercicios(Model model, @PathVariable("idRutina") int id)
+	{
+		//model.addAttribute("totalDias", totalDias);
+		//model.addAttribute("ejerciciosPorDia", ejerciciosPorDia);
+		//model.addAttribute("rutina", rutinaService.findById(id));
+		return "rutina/asignarEjercicios";
+	}
+	
+	
 	
 }

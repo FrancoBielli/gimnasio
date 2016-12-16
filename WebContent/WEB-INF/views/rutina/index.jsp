@@ -25,9 +25,11 @@
 					<td><c:out value="${rutina.getNombre()}"/></td>
 					
 					<td>
+						<a type="button" class="btn btn-success" href='<c:url value="/rutina/${rutina.id}/asignarDias" />'>Asignar Ejercicios</a>
 						<a type="button" class="btn btn-info" href='<c:url value="/rutina/${rutina.id}/detalle" />'>Detalles</a>
 						<a type="button" class="btn btn-warning" href='<c:url value="/rutina/${rutina.id}/editar" />'>Editar</a>
 						<a type="button" class="btn btn-danger confirm" href='<c:url value="/rutina/${rutina.id}/eliminar" />'>Eliminar</a>
+						
 					</td>
 				</tr>
 			</c:forEach>
