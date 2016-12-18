@@ -5,40 +5,30 @@
 <html>	
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Asignar Ejercicios a Rutina</title>
+	<title>Editar Ejercicios de Rutina</title>
 	
 	<link rel="stylesheet" type="text/css"
 	href='<c:url value="/resources/css/bootstrap.min.css" />'>
-	<c:set var="semana" value="1"/>
 </head>
 <body>
 	<h1>Ejercicios de la Rutina : <c:out value="${rutina.getNombre()}"/> </h1>
 	
-	<sf:form method="POST" modelAttribute="ejerciciosRutinaForm"	
+	<sf:form method="POST" modelAttribute="ejerciciosRutinaForm"
 	action="${pageContext.request.contextPath}/rutina/asignarEjercicios">
 	<input type="hidden" name="idRutina" value="${idRutina}">
-	<c:forEach items="${ejerciciosRutinaForm.ejerciciosRutina}" var="ejercicioRutina" varStatus="status">
-	<input type="hidden" name="ejerciciosRutina[${status.index}].rutina.id" value="${ejercicioRutina.rutina.id }" />
-	<input type="hidden" name="ejerciciosRutina[${status.index}].dia" value="${ejercicioRutina.getDia()}">
-		<table class="table table-condensed">
-			<c:if test="${status.index % ejerciciosPorDia == 0 }">
-				<h1>
-					<c:if test="${ejercicioRutina.getDia() % dias == 0 }">
-						Semana
-						<c:out value="${semana}"/>
-						<hr>
-						<c:set var="semana" value="${semana+1 }"/>
-					</c:if> 
-					Día <c:out value="${ejercicioRutina.getDia() + 1 }"/>
-				</h1>
-				<tr>
-					<th>Ejercicio</th>
-					<th>Series</th>
-					<th>Repeticiones (Por serie)</th>
-					<th>Peso (KG)</th>
-					<th>Descanso (Segundos)</th>
-				</tr>
-			</c:if>				
+	<table class="table table-condensed">
+		<tr>
+			<th>Ejercicio</th>
+			<th>Series</th>
+			<th>Repeticiones (Por serie)</th>
+			<th>Peso (KG)</th>
+			<th>Descanso (Segundos)</th>
+			<th>Dia</th>
+		</tr>
+		<c:forEach items="${ejerciciosRutinaForm.ejerciciosRutina}" var="ejercicioRutina" varStatus="status">
+			<input type="hidden" name="ejerciciosRutina[${status.index}].rutina.id" value="${ejercicioRutina.rutina.id }" />
+			<input type="hidden" name="ejerciciosRutina[${status.index}].id" value="${ejercicioRutina.id }" />
+			<input type="hidden" name="ejerciciosRutina[${status.index}].dia" value="${ejercicioRutina.getDia()}">
 			<tr>
 				<td>	
 					<sf:select path="ejerciciosRutina[${status.index}].ejercicio.id" id="ejercicio" >		
@@ -50,20 +40,24 @@
 					</sf:select>
 				</td>
 				<td>
-					<input type="text" name="ejerciciosRutina[${status.index}].series"/>
+					<input type="text" name="ejerciciosRutina[${status.index}].series" value="${ejercicioRutina.getSeries()}"/>
 				</td>
 				<td>
-					<input type="text" name="ejerciciosRutina[${status.index}].repeticiones" />
+					<input type="text" name="ejerciciosRutina[${status.index}].repeticiones" value="${ejercicioRutina.getRepeticiones()}" />
 				</td>
 				<td>
-					<input type="text" name="ejerciciosRutina[${status.index}].peso"/>
+					<input type="text" name="ejerciciosRutina[${status.index}].peso" value="${ejercicioRutina.getPeso()}"/>
 				</td>
 				<td>
-					<input type="text" name="ejerciciosRutina[${status.index}].descanso" />
+					<input type="text" name="ejerciciosRutina[${status.index}].descanso" value="${ejercicioRutina.getDescanso()}" />
+				</td>
+				<td>
+					<input type="text" readonly name="dia" value="${ejercicioRutina.getDia()+1}">
 				</td>
 			</tr>
-		</table>
-	</c:forEach>
+		
+		</c:forEach>
+	</table>
 	<div class="form-group">
 			<label class="col-md-4 control-label"></label>
 			<div>

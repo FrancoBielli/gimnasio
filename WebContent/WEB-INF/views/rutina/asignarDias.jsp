@@ -13,27 +13,27 @@
 </head>
 <body>
 	<h1>Días, semanas y ejercicios de Rutina</h1>
-	<form method="post" action="${pageContext.request.contextPath}/rutina/asignarDias" Class="form-horizontal">
-		<input type="hidden" name="idRutina" id="idRutina" value="${idRutina }"/>
+	<form method="POST" action="${pageContext.request.contextPath}/rutina/asignarDias" Class="form-horizontal">
+		<input type="hidden" name="id" id="id" value="${id}"/>
 		<div class="form-group">
 			<label class="col-md-4 control-label" for="semanas">Semanas: </label>
 			<div class="col-md-4">
-				<input  type="text" class="form-control input-md"
+				<input  type="number" class="form-control input-md"
 					id="semanas" name="semanas" placeholder="Semanas de duración de la rutina" />
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-md-4 control-label" for="dias">dias: </label>
+			<label class="col-md-4 control-label" for="dias">días: </label>
 			<div class="col-md-4">
-				<input name="dias" type="text" class="form-control input-md"
+				<input name="dias" type="number" class="form-control input-md"
 					id="dias" placeholder="Dias a la semana" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-4 control-label" for="ejerciciosPorDia">Ejercicios por día: </label>
 			<div class="col-md-4">
-				<input name="ejerciciosPorDia" type="text" class="form-control input-md"
-					id="ejerciciosPorDia" placeholder="Cantidad de Ejercicios por día" />
+				<input name="ejerciciosPorDia" type="number" class="form-control input-md"
+				id="ejerciciosPorDia" placeholder="Cantidad de Ejercicios por día" />
 			</div>
 		</div>
 		<div class="form-group">

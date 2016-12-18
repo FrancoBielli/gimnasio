@@ -1,5 +1,7 @@
 package com.gimnasio.Pojo;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +12,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="ejercicios_rutina")
-public class EjerciciosRutina {
+public class EjerciciosRutina implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

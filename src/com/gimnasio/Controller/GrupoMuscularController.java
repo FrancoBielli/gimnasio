@@ -50,7 +50,7 @@ public class GrupoMuscularController {
 		{
 			System.out.print(e.toString());
 		}
-		return "redirect:crear";
+		return "redirect:index";
 	}
 	
 	@RequestMapping(value = "{id}/editar", method = RequestMethod.GET)

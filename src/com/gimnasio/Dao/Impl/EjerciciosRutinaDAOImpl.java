@@ -52,7 +52,7 @@ public class EjerciciosRutinaDAOImpl implements EjerciciosRutinaDAO{
 	@Override
 	public List<EjerciciosRutina> findByRutina(Rutina rutina) {
 		Criteria criteria = getSession().createCriteria(EjerciciosRutina.class)
-				.add(Restrictions.eq("rutinas.id", rutina.getId()));
+				.add(Restrictions.eq("rutina.id", rutina.getId()));
 		return criteria.list();
 	}
 
