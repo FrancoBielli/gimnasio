@@ -24,10 +24,10 @@
 		<div class="form-group">
 			<label class="col-md-4 control-label"></label>
 			<div>
-			</div>
 				<input type="submit" value="Aceptar" class="btn btn-success">
 				<a type="button" class="btn btn-warning" href='<c:url value="/rutina/index" />'>Cancelar</a>
 			</div>
+		</div>
 		
 	</sf:form>
 </body>

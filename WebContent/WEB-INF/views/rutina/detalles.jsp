@@ -13,13 +13,38 @@
 	<hr>
 	<table class="table">
 		<tr>
-			<td class="col-md-4">Nombre</td>
+			<td class="col-md-2">Nombre</td>
 			<td><c:out value="${rutina.getNombre()}"/></td>
+		</tr>
+		<tr>
+			
+			<td colspan="2">
+				<table class="table table-striped">
+					<tr>
+						<th>Ejercicio</th>
+						<th>Series</th>
+						<th>Repeticiones</th>
+						<th>Peso</th>
+						<th>Descanso</th>
+						<th>Dia</th>
+					</tr>
+					<c:forEach items="${ejerciciosRutina}" var="ejercicioRutina" varStatus="status">
+						<tr>
+							<td> <c:out value="${ejercicioRutina.ejercicio.getNombre()}"/> </td>
+							<td> <c:out value="${ejercicioRutina.getSeries()}"/> </td>
+							<td> <c:out value="${ejercicioRutina.getRepeticiones()}"/> </td>
+							<td> <c:out value="${ejercicioRutina.getPeso()}"/> </td>
+							<td> <c:out value="${ejercicioRutina.getDescanso()}"/> </td>
+							<td> <c:out value="${ejercicioRutina.getDia()+1}"/> </td>
+						</tr>
+					</c:forEach>				
+				</table>
+				
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
 				<a type="button" class="btn btn-warning" href='<c:url value="/rutina/index" />'>Volver</a>
-				<a type="button" class="btn btn-info" href='<c:url value="/rutina/${rutina.id}/editar" />'>Editar</a>
 			</td>
 		</tr>
 	</table>

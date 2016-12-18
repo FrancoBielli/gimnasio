@@ -51,7 +51,7 @@ public class UsuarioController {
 		try
 		{
 			usuario.setActivo(true);
-			usuario.setPermiso("ROLE_ADMIN");
+			usuario.setPermiso("ROLE_USER");
 			usuarioService.saveOrUpdate(usuario);
 		}
 		catch(Exception e)
