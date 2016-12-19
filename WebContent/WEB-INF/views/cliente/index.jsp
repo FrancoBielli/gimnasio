@@ -23,39 +23,37 @@
 	<br>
 	<h1>Rutina de <c:out value="${usuario.getNombre()}"/> </h1>
 	<hr>
-	<br>
-	<table class="table">
-	<tr>
-		<th>Ejercicio</th>
-		<th>Series</th>
-		<th>Repeticiones</th>
-		<th>Peso</th>
-		<th>Descanso entre series</th>
-		<th>Dia</th>
-	</tr>
-	<c:forEach items="${ejerciciosRutina}" var="ejercicioRutina">
-		<tr>
-			<td>
-				<c:out value="${ejercicioRutina.getEjercicio().getNombre() }"/>
-			</td>
-			<td>
-				<c:out value="${ejercicioRutina.getSeries() }"/>
-			</td>
-			<td>
-				<c:out value="${ejercicioRutina.getRepeticiones() }"/>
-			</td>
-			<td>
-				<c:out value="${ejercicioRutina.getPeso() }"/>
-			</td>
-			<td>
-				<c:out value="${ejercicioRutina.getDescanso() }"/>
-			</td>
-			<td>
-				<c:out value="${ejercicioRutina.getDia() +1 }"/>
-			</td>
-		</tr>
-	</c:forEach>
-	</table>
+	<h2>Ejercicios De la Rutina</h2>
+				<c:set var="semana" value="1"/>
+				<c:forEach items="${ejerciciosRutina}" var="ejercicioRutina" varStatus="status">
+					<table class="table table-striped">
+						<c:if test="${status.index % rutina.ejerciciosPorDia == 0 }">
+							<h3>
+								<c:if test="${ejercicioRutina.getDia() % rutina.getDias() == 0 }">
+									Semana
+									<c:out value="${semana}"/>
+									<hr>
+									<c:set var="semana" value="${semana+1 }"/>
+								</c:if> 
+								Día <c:out value="${ejercicioRutina.getDia()+1}"/>
+							</h3>
+							<tr>
+								<th>Ejercicio</th>
+								<th>Series</th>
+								<th>Repeticiones (Por serie)</th>
+								<th>Peso (KG)</th>
+								<th>Descanso (Segundos)</th>
+							</tr>
+						</c:if>	
+						<tr>
+							<td> <c:out value="${ejercicioRutina.ejercicio.getNombre()}"/> </td>
+							<td> <c:out value="${ejercicioRutina.getSeries()}"/> </td>
+							<td> <c:out value="${ejercicioRutina.getRepeticiones()}"/> </td>
+							<td> <c:out value="${ejercicioRutina.getPeso()}"/> </td>
+							<td> <c:out value="${ejercicioRutina.getDescanso()}"/> </td>
+						</tr>
+					</table>
+		</c:forEach>	
 	<br>
 </body>
 </html>

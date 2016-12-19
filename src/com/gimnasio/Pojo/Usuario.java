@@ -8,6 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="usuario")
@@ -19,10 +23,15 @@ public class Usuario implements Serializable{
 	@GeneratedValue
 	private int id;
 	
+	@NotEmpty
 	private String email;
 	
+	@NotEmpty
+	@NotNull
+	@Size(min=4)
 	private String password;
 	
+	@NotEmpty
 	private String nombre;
 	
 	private String direccion;

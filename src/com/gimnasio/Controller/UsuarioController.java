@@ -2,9 +2,12 @@ package com.gimnasio.Controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,17 +50,23 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value="crearUsuario", method = RequestMethod.POST)
-	public String crearUsuario(@ModelAttribute("usuario") Usuario usuario, Model model ){
-		try
+	public String crearUsuario(@ModelAttribute("usuario") @Valid Usuario usuario, Model model,
+			BindingResult result){
+		if(!result.hasErrors())
 		{
-			usuario.setActivo(true);
-			usuarioService.saveOrUpdate(usuario);
+			try
+			{
+				usuario.setActivo(true);
+				usuarioService.saveOrUpdate(usuario);
+			}
+			catch(Exception e)
+			{
+				System.out.print(e.toString());
+			}
+			return "redirect:index";
 		}
-		catch(Exception e)
-		{
-			System.out.print(e.toString());
-		}
-		return "redirect:index";
+		return "usuario/crear";
+		
 	}
 	
 	@RequestMapping(value = "{id}/editar", method = RequestMethod.GET)

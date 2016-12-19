@@ -21,9 +21,9 @@
 	<input type="hidden" name="ejerciciosRutina[${status.index}].rutina.id" value="${ejercicioRutina.rutina.id }" />
 	<input type="hidden" name="ejerciciosRutina[${status.index}].dia" value="${ejercicioRutina.getDia()}">
 		<table class="table table-condensed">
-			<c:if test="${status.index % ejerciciosPorDia == 0 }">
+			<c:if test="${status.index % rutina.ejerciciosPorDia == 0 }">
 				<h1>
-					<c:if test="${ejercicioRutina.getDia() % dias == 0 }">
+					<c:if test="${ejercicioRutina.getDia() % rutina.getDias() == 0 }">
 						Semana
 						<c:out value="${semana}"/>
 						<hr>

@@ -22,6 +22,27 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label class="col-md-4 control-label" for="semanas">Semanas: </label>
+			<div class="col-md-4">
+				<sf:input path="semanas" type="number" class="form-control input-md"
+					id="semanas" placeholder="Semanas de duración" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="dias">Días por semana: </label>
+			<div class="col-md-4">
+				<sf:input path="dias" type="number" class="form-control input-md"
+					id="dias" placeholder="Días por semana de la rutina" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="ejerciciosPorDia">Ejercicios Por Día: </label>
+			<div class="col-md-4">
+				<sf:input path="ejerciciosPorDia" type="number" class="form-control input-md"
+					id="ejerciciosPorDia" placeholder="Cantidad de ejercicios por día" />
+			</div>
+		</div>
+		<div class="form-group">
 			<label class="col-md-4 control-label"></label>
 			<div>
 				<input type="submit" value="Aceptar" class="btn btn-success">
