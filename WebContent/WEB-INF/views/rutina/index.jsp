@@ -30,7 +30,7 @@
 						<a type="button" class="btn btn-danger confirm" href='<c:url value="/rutina/${rutina.id}/eliminar" />'>Eliminar</a>
 					</td>
 					<td>
-						<a type="button" class="btn btn-success" href='<c:url value="/rutina/${rutina.id}/asignarDias" />'>Asignar Ejercicios</a>
+						<a type="button" class="btn btn-success" href='<c:url value="/rutina/${rutina.id}/asignarEjercicios" />'>Asignar Ejercicios</a>
 						<a type="button" class="btn btn-warning" href='<c:url value="/rutina/${rutina.id}/editarEjercicios" />'>Editar Ejercicios</a>
 						<a type="button" class="btn btn-danger confirm" href='<c:url value="/rutina/${rutina.id}/eliminarEjercicios" />'>Eliminar Ejercicios</a>
 					</td>

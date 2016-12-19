@@ -19,6 +19,7 @@
 			<div class="col-md-4">
 				<sf:input path="nombre" type="text" class="form-control input-md"
 					id="nombre" placeholder="Nombre y Apellido" />
+					<sf:errors path="nombre" cssStyle="color:red"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -26,6 +27,7 @@
 			<div class="col-md-4">
 				<sf:input path="email" type="text" class="form-control input-md"
 					id="email" placeholder="Introduce tu Email" />
+				<sf:errors path="email" cssStyle="color:red"/>
 					<small>Se usará este correo para ingresar al sistema</small>
 			</div>
 			
@@ -35,16 +37,18 @@
 			<div class="col-md-4">
 				<sf:input path="password" type="password" class="form-control input-md"
 					id="password" placeholder="Contraseña" />
+					<sf:errors path="password" cssStyle="color:red"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-4 control-label" for="permiso">Permisos: </label>
 			<div class="col-md-4">
 				<sf:select path="permiso" type="text" class="form-control input-md"
-					id="direccion">
+					id="permiso">
 					<sf:option value="ROLE_ADMIN">Administrador</sf:option>
 					<sf:option value="ROLE_USER">Cliente</sf:option>
 				</sf:select>
+				<sf:errors path="permiso" cssStyle="color:red"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -52,6 +56,7 @@
 			<div class="col-md-4">
 				<sf:input path="direccion" type="text" class="form-control input-md"
 					id="direccion" placeholder="Dirección" />
+				<sf:errors path="direccion" cssStyle="color:red"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -59,6 +64,7 @@
 			<div class="col-md-4">
 				<sf:input path="telefono" type="text" class="form-control input-md"
 					id="telefono" placeholder="Teléfono" />
+					<sf:errors path="telefono" cssStyle="color:red"/>
 			</div>
 		</div>
 		<div class="form-group">

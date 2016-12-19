@@ -17,29 +17,50 @@
 			<td><c:out value="${rutina.getNombre()}"/></td>
 		</tr>
 		<tr>
-			
+			<td class="col-md-2">Semanas</td>
+			<td><c:out value="${rutina.getSemanas()}"/></td>
+		</tr>
+		<tr>
+			<td class="col-md-2">Días</td>
+			<td><c:out value="${rutina.getDias()}"/></td>
+		</tr>
+		<tr>
+			<td class="col-md-2">Ejercicios por día</td>
+			<td><c:out value="${rutina.getEjerciciosPorDia()}"/></td>
+		</tr>
+		<tr>
 			<td colspan="2">
-				<table class="table table-striped">
-					<tr>
-						<th>Ejercicio</th>
-						<th>Series</th>
-						<th>Repeticiones</th>
-						<th>Peso</th>
-						<th>Descanso</th>
-						<th>Dia</th>
-					</tr>
-					<c:forEach items="${ejerciciosRutina}" var="ejercicioRutina" varStatus="status">
+			<h2>Ejercicios De la Rutina</h2>
+				<c:set var="semana" value="1"/>
+				<c:forEach items="${ejerciciosRutina}" var="ejercicioRutina" varStatus="status">
+					<table class="table table-striped">
+						<c:if test="${status.index % rutina.ejerciciosPorDia == 0 }">
+							<h3>
+								<c:if test="${ejercicioRutina.getDia() % rutina.getDias() == 0 }">
+									Semana
+									<c:out value="${semana}"/>
+									<hr>
+									<c:set var="semana" value="${semana+1 }"/>
+								</c:if> 
+								Día <c:out value="${ejercicioRutina.getDia()+1}"/>
+							</h3>
+							<tr>
+								<th>Ejercicio</th>
+								<th>Series</th>
+								<th>Repeticiones (Por serie)</th>
+								<th>Peso (KG)</th>
+								<th>Descanso (Segundos)</th>
+							</tr>
+						</c:if>	
 						<tr>
 							<td> <c:out value="${ejercicioRutina.ejercicio.getNombre()}"/> </td>
 							<td> <c:out value="${ejercicioRutina.getSeries()}"/> </td>
 							<td> <c:out value="${ejercicioRutina.getRepeticiones()}"/> </td>
 							<td> <c:out value="${ejercicioRutina.getPeso()}"/> </td>
 							<td> <c:out value="${ejercicioRutina.getDescanso()}"/> </td>
-							<td> <c:out value="${ejercicioRutina.getDia()+1}"/> </td>
 						</tr>
-					</c:forEach>				
-				</table>
-				
+					</table>
+				</c:forEach>				
 			</td>
 		</tr>
 		<tr>
