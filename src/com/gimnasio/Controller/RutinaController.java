@@ -260,4 +260,23 @@ public class RutinaController {
 		model.addAttribute("rutina", rutina);
 		return new ModelAndView("rutina/editarEjercicios", "ejerciciosRutinaForm", ejerciciosRutinaForm );
 	}
+	
+	@RequestMapping(value = "{id}/eliminarEjercicios", method = RequestMethod.GET)
+	public String eliminarEjerciciosRutina(Model model,@PathVariable("id") int id)
+	{
+		try
+		{
+			Rutina rutina = rutinaService.findById(id);
+			List<EjerciciosRutina> ejerciciosRutina = ejerciciosRutinaService.findByRutina(rutina.getId());
+			for(EjerciciosRutina ejerut : ejerciciosRutina)
+			{
+				ejerciciosRutinaService.delete(ejerut);
+			}
+			return "redirect:/rutina/";
+		}
+		catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return "redirect:/rutina/";
+	}
 }

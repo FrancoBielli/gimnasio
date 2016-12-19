@@ -8,7 +8,7 @@ public class IndexController {
 	
 	@RequestMapping("/")
 	public String Index() {
-		return "index";
+		return "redirect";
 	}
 
 	@RequestMapping("/login")
@@ -19,5 +19,11 @@ public class IndexController {
 	@RequestMapping("/logout")
 	public String logout(){
 		return "login";
+	}
+	
+	@RequestMapping(value="/redirect")
+	public String redirect()
+	{
+		return "redirect";
 	}
 }

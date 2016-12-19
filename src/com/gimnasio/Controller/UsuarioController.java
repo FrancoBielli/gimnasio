@@ -51,7 +51,6 @@ public class UsuarioController {
 		try
 		{
 			usuario.setActivo(true);
-			usuario.setPermiso("ROLE_USER");
 			usuarioService.saveOrUpdate(usuario);
 		}
 		catch(Exception e)
@@ -134,8 +133,7 @@ public class UsuarioController {
 		{
 			Rutina rutina = rutinaService.findById(usuario.getRutina().getId());
 			usuario = usuarioService.findById(usuario.getId());
-			usuario.setRutina(rutina);
-			usuarioService.saveOrUpdate(usuario);
+			usuarioService.updateRutina(usuario, rutina);
 		}
 		catch (Exception e) {
 			System.out.println(e.toString());

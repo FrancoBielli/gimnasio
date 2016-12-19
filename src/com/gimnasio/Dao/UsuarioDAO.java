@@ -2,6 +2,7 @@ package com.gimnasio.Dao;
 
 import java.util.List;
 
+import com.gimnasio.Pojo.Rutina;
 import com.gimnasio.Pojo.Usuario;
 
 public interface UsuarioDAO {
@@ -14,5 +15,6 @@ public interface UsuarioDAO {
 	public Usuario findByEmail(String email);
 	public Usuario findByNombre(String nombre);
 	public List<Usuario> findAll();
+	public void updateRutina(Usuario usuario, Rutina rutina);
 
 }

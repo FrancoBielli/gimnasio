@@ -10,10 +10,12 @@
 		<security:intercept-url pattern="/login" access="permitAll" />
 		<security:intercept-url pattern="/" access="isAuthenticated()" />
 		<security:intercept-url pattern="/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/cliente/**" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/ejercicio/**" access="hasRole('ROLE_ADMIN')" />
 		<security:form-login login-page="/login"
 			password-parameter="password" username-parameter="email"
-			authentication-failure-url="/login?error=true" />
+			authentication-failure-url="/login?error=true"
+			default-target-url="/redirect" />
 		<security:logout invalidate-session="true" logout-url="/logout" />
 		<security:remember-me token-validity-seconds="7200"
 			user-service-ref="customUserDetailsService" />
