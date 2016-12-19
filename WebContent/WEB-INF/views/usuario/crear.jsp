@@ -18,7 +18,7 @@
 			<label class="col-md-4 control-label" for="nombre">Nombre: </label>
 			<div class="col-md-4">
 				<sf:input path="nombre" type="text" class="form-control input-md"
-					id="nombre" placeholder="Nombre del Usuario" />
+					id="nombre" placeholder="Nombre y Apellido" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -35,6 +35,16 @@
 			<div class="col-md-4">
 				<sf:input path="password" type="password" class="form-control input-md"
 					id="password" placeholder="Contraseña" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="permiso">Permisos: </label>
+			<div class="col-md-4">
+				<sf:select path="permiso" type="text" class="form-control input-md"
+					id="direccion">
+					<sf:option value="ROLE_ADMIN">Administrador</sf:option>
+					<sf:option value="ROLE_USER">Cliente</sf:option>
+				</sf:select>
 			</div>
 		</div>
 		<div class="form-group">

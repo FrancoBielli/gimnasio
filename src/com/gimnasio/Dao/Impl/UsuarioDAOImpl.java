@@ -3,6 +3,7 @@ package com.gimnasio.Dao.Impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gimnasio.Dao.UsuarioDAO;
+import com.gimnasio.Pojo.Rutina;
 import com.gimnasio.Pojo.Usuario;
 
 @Transactional
@@ -69,6 +71,13 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		Criteria criteria = getSession().createCriteria(Usuario.class)
 				.add(Restrictions.like("nombre", "%" + nombre + "%"));
 		return (Usuario)criteria.uniqueResult();
+	}
+	@Override
+	public void updateRutina(Usuario usuario, Rutina rutina) {
+		Query query = getSession().createQuery("update Usuario set rutina_id = " + rutina.getId()  +
+				" where id = "+ usuario.getId());
+			int result = query.executeUpdate();
+			System.out.println(result);
 	}
 
 }

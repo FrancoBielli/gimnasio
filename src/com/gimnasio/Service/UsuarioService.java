@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.gimnasio.Dao.UsuarioDAO;
+import com.gimnasio.Pojo.Rutina;
 import com.gimnasio.Pojo.Usuario;
 
 @Service
@@ -28,6 +29,11 @@ public class UsuarioService {
 		return usuarioDAO.findAll();
 	}
 	
+	public Usuario findByEmail(String email)
+	{
+		return usuarioDAO.findByEmail(email);
+	}
+	
 	public void saveOrUpdate(Usuario usuario)
 	{
 		String passwordUsuario = usuario.getPassword();
@@ -45,5 +51,10 @@ public class UsuarioService {
 	public void delete(Usuario usuario)
 	{
 		usuarioDAO.delete(usuario);
+	}
+	
+	public void updateRutina(Usuario usuario, Rutina rutina)
+	{
+		usuarioDAO.updateRutina(usuario, rutina);
 	}
 }
