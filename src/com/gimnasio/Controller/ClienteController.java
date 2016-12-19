@@ -7,12 +7,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gimnasio.Pojo.EjerciciosRutina;
+import com.gimnasio.Pojo.EvolucionUsuario;
 import com.gimnasio.Pojo.Rutina;
 import com.gimnasio.Pojo.Usuario;
 import com.gimnasio.Service.EjerciciosRutinaService;
+import com.gimnasio.Service.EvolucionUsuarioService;
 import com.gimnasio.Service.RutinaService;
 import com.gimnasio.Service.UsuarioService;
 
@@ -22,6 +25,9 @@ public class ClienteController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private EvolucionUsuarioService evolucionUsuarioService;
 	
 	@Autowired
 	private EjerciciosRutinaService ejerciciosRutinaService;
@@ -55,6 +61,14 @@ public class ClienteController {
 	public String vacio()
 	{
 		return "cliente/index";
+	}
+	
+	@RequestMapping(value="{id}/evolucion")
+	public String evolucion(@PathVariable("id")int id, Model model)
+	{
+		List<EvolucionUsuario> listEvolucionUsuario = evolucionUsuarioService.listByUsuario(id);
+		model.addAttribute("listEvolucionUsuario", listEvolucionUsuario);
+		return "cliente/evolucion";
 	}
 
 }

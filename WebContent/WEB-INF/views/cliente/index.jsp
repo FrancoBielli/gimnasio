@@ -23,6 +23,9 @@
 	<br>
 	<h1>Rutina de <c:out value="${usuario.getNombre()}"/> </h1>
 	<hr>
+	<a type="button" class="btn btn-warning" href='<c:url value="/cliente/${usuario.id}/evolucion" />'>Cancelar</a>
+	<hr>
+	
 	<h2>Ejercicios De la Rutina</h2>
 				<c:set var="semana" value="1"/>
 				<c:forEach items="${ejerciciosRutina}" var="ejercicioRutina" varStatus="status">
