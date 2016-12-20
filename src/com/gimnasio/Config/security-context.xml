@@ -8,6 +8,7 @@
 
 	<security:http use-expressions="true">
 		<security:intercept-url pattern="/login" access="permitAll" />
+		<security:intercept-url pattern="/shared/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/resources/**" access="permitAll" />
 		<security:intercept-url pattern="/" access="isAuthenticated()" />
 		<security:intercept-url pattern="/cliente/**" access="hasRole('ROLE_USER')" />

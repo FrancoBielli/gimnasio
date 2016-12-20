@@ -66,6 +66,7 @@ public class ClienteController {
 	@RequestMapping(value="{id}/evolucion")
 	public String evolucion(@PathVariable("id")int id, Model model)
 	{
+		model.addAttribute("usuario", usuarioService.findById(id));
 		List<EvolucionUsuario> listEvolucionUsuario = evolucionUsuarioService.listByUsuario(id);
 		model.addAttribute("listEvolucionUsuario", listEvolucionUsuario);
 		return "cliente/evolucion";

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/bootstrap.min.css" />'>
@@ -19,10 +20,8 @@
     					<c:out value="${evolucionUsuario.getPorcentajeGrasa()}"/>,
     					<c:out value="${evolucionUsuario.getPorcentajeMusculo()}"/>,
     					<c:out value="${evolucionUsuario.getImc()}"/>
-    					],
+   					],
     			</c:forEach>
-    			['2016-11-19',80, 55, 55, 55],
-    			['2016-12-19',50, 55, 55, 55]
     			]);
     		
             var options = {
@@ -37,10 +36,24 @@
     		chart.draw(data, options);
 
     	}
-
    	</script>
-
 </head>
 <body>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="collapse navbar-collapse">
+		  		<ul class="nav navbar-nav">
+		  			<li role="presentation"><a href='<c:url value="/cliente/index" />'>Rutina</a></li>
+		  			<li role="presentation"><a href='<c:url value="/cliente/${usuario.getId()}/evolucion" />'>Estadísticas</a></li>
+				</ul>
+				<a class="navbar-brand navbar-right" role="button" href='<c:url value="/logout"/>'>Salir ${usuario.getNombre()} </a>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+<h1>Evolución de Usuario</h1>
+<hr>
 	<div id="linechart_material" style="width: 900px; height: 500px"></div>
+	<a type="button" class="btn btn-info" href='<c:url value="/cliente/index" />'>Volver</a>
 </body>
