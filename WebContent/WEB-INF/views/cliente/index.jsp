@@ -10,19 +10,24 @@
 	<title>Inicio</title>
 </head>
 <body>
-<sec:authorize access="hasRole('ROLE_USER')">Usuario</sec:authorize>
-<sec:authorize access="isAuthenticated()">
-	<sec:authentication property="principal" var="principal"/>
-	<c:set var="principal" value="${principal}"></c:set>
-	<c:out value="${principal.toString()}"></c:out>
-	<sec:authentication property="credentials" var="detalles"/>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="collapse navbar-collapse">
+		  		<ul class="nav navbar-nav">
+		  			<li role="presentation"><a href='<c:url value="/cliente/index" />'>Rutina</a></li>
+		  			<li role="presentation"><a href='<c:url value="/cliente/${usuario.getId()}/evolucion" />'>Estadísticas</a></li>
+				</ul>
+				<a class="navbar-brand navbar-right" role="button" href='<c:url value="/logout"/>'>Salir ${usuario.getNombre()} </a>
+			</div>
+		</div>
+	</div>
 	<br>
-	<c:out value="${detalles }"></c:out>
-</sec:authorize>
-<a class="btn btn-warning" href='<c:url value="/logout"/>'>Salir</a>
 	<br>
 	<h1>Rutina de <c:out value="${usuario.getNombre()}"/> </h1>
 	<hr>
+	<a type="button" class="btn btn-info" href='<c:url value="/cliente/${usuario.id}/evolucion" />'>Mis estadísticas</a>
+	<hr>
+	
 	<h2>Ejercicios De la Rutina</h2>
 				<c:set var="semana" value="1"/>
 				<c:forEach items="${ejerciciosRutina}" var="ejercicioRutina" varStatus="status">
