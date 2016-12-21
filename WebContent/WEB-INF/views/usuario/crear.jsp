@@ -28,8 +28,8 @@
 			<div class="col-md-4">
 				<sf:input path="email" type="email" class="form-control input-md"
 					id="email" placeholder="Introduce tu Email" />
+					<small>Se usará este correo para ingresar al sistema</small><br>
 					<sf:errors path="email" class="text-danger"/>
-					<small>Se usará este correo para ingresar al sistema</small>
 			</div>
 			
 		</div>

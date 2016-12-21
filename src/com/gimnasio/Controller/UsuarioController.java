@@ -2,12 +2,11 @@ package com.gimnasio.Controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gimnasio.Pojo.Rutina;
 import com.gimnasio.Pojo.Usuario;
+import com.gimnasio.Pojo.Valid.SpringFormGroup;
 import com.gimnasio.Service.EvolucionUsuarioService;
 import com.gimnasio.Service.RutinaService;
 import com.gimnasio.Service.UsuarioService;
@@ -84,8 +84,8 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value="crearUsuario", method = RequestMethod.POST)
-	public String crearUsuario(@Valid @ModelAttribute("usuario") Usuario usuario, 
-			BindingResult result,Model model){
+	public String crearUsuario(@ModelAttribute("usuario") @Validated(value=SpringFormGroup.class) Usuario usuario, 
+			BindingResult result, Model model){
 		if(!result.hasErrors())
 		{
 			try
@@ -105,7 +105,7 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value ="editarUsuario", method = RequestMethod.POST)
-	public String editarUsuario(Model model, @ModelAttribute("usuario") @Valid Usuario usuario, BindingResult result)
+	public String editarUsuario(Model model, @ModelAttribute("usuario") @Validated(value=SpringFormGroup.class) Usuario usuario, BindingResult result)
 	{
 		if(!result.hasErrors())
 		{

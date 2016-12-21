@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gimnasio.Pojo.EvolucionUsuario;
 import com.gimnasio.Pojo.Usuario;
@@ -72,6 +73,8 @@ public class EvolucionUsuarioController {
 			
 			return "redirect:" + evolucionUsuario.getUsuario().getId() +"/index";
 		}
+		model.addAttribute("usuario", evolucionUsuario.getUsuario());
+		model.addAttribute("fecha", evolucionUsuario.getFecha());
 		return "evolucionUsuario/crear";
 	}
 	
@@ -81,30 +84,41 @@ public class EvolucionUsuarioController {
 		try
 		{
 			EvolucionUsuario evolucionUsuario = evolucionUsuarioService.findById(id);
+			model.addAttribute("fechaHidden", evolucionUsuarioService.findById(id).getFecha());
 			model.addAttribute("evolucionUsuario", evolucionUsuario);
+			Usuario usuario = evolucionUsuario.getUsuario();
+			model.addAttribute("usuario", evolucionUsuario.getUsuario());
+			System.out.println(usuario);
 		}
 		catch (Exception e) {
 			System.out.print(e.toString());
 		}
+		
 		return "evolucionUsuario/editar";
 	}
 	
 	@RequestMapping(value ="editarEvolucionUsuario", method = RequestMethod.POST)
 	public String editarRutina(Model model, 
 			@ModelAttribute("evolucionUsuario") @Valid EvolucionUsuario evolucionUsuario,
-			BindingResult result)
+			BindingResult result,
+			@RequestParam("fechaHidden")Timestamp fecha)
 	{
+		System.out.println(result);
 		if(!result.hasErrors())
 		{
 			try
 			{
+				evolucionUsuario.setFecha(fecha);
 				evolucionUsuarioService.saveOrUpdate(evolucionUsuario);
+				return "redirect:"+ evolucionUsuario.getUsuario().getId() +"/index";
 			}
 			catch (Exception e) {
 				System.out.println(e.toString());
 			}
-			return "redirect:"+ evolucionUsuario.getUsuario().getId() +"/index";
 		}
+		model.addAttribute("fechaHidden", evolucionUsuarioService.findById(evolucionUsuario.getId()).getFecha());
+		model.addAttribute("id", evolucionUsuario.getId());
+		model.addAttribute("usuario", evolucionUsuario.getUsuario().getId());
 		return "evolucionUsuario/editar";
 	}
 	

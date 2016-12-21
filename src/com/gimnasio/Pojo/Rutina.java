@@ -19,19 +19,18 @@ public class Rutina {
 	@GeneratedValue
 	private int id;
 	@NotNull
-	@Min(value=1)
+	@Min(value=1, message = Constants.SIZE_0)
 	private int semanas;
 	@NotNull
-	@Min(value=1)
-	@Max(value=5)
+	@Min(value=1, message = Constants.SIZE_0)
+	@Max(value=7, message = Constants.MAX_DIAS_RUTINA)
 	private int dias;
 	@NotNull
-	@Min(value=4)
-	@Max(value=10)
+	@Min(value=1, message = Constants.SIZE_0)
 	@Column(name="ejercicios_por_dia")
 	private int ejerciciosPorDia;
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = Constants.NOT_EMPTY)
 	private String nombre;
 	public int getId() {
 		return id;

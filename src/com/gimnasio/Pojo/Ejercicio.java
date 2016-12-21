@@ -22,11 +22,10 @@ public class Ejercicio {
 	private int id;
 	
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = Constants.NOT_EMPTY)
 	private String nombre;
 	
 	@OneToOne
-	@NotNull
 	@JoinColumn(name="grupo_muscular_id")
 	private GrupoMuscular grupoMuscular;
 

@@ -11,6 +11,7 @@
 		<security:intercept-url pattern="/shared/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/resources/**" access="permitAll" />
 		<security:intercept-url pattern="/" access="isAuthenticated()" />
+		<security:intercept-url pattern="/error" access="isAuthenticated()" />
 		<security:intercept-url pattern="/cliente/**" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/ejercicio/**" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/usuario/**" access="hasRole('ROLE_ADMIN')" />

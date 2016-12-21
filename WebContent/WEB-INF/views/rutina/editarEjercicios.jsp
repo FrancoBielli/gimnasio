@@ -16,7 +16,7 @@
 	<c:set var="semana" value="1"/>
 	<sf:form method="POST" modelAttribute="ejerciciosRutinaForm"
 	action="${pageContext.request.contextPath}/rutina/editarEjercicios">
-	<input type="hidden" name="rutinaId" value="${idRutina}">
+	<input type="hidden" name="rutinaId" value="${rutinaId}">
 	<c:forEach items="${ejerciciosRutinaForm.ejerciciosRutina}" var="ejercicioRutina" varStatus="status">
 		<input type="hidden" name="ejerciciosRutina[${status.index}].rutina.id" value="${ejercicioRutina.rutina.id }" />
 		<input type="hidden" name="ejerciciosRutina[${status.index}].id" value="${ejercicioRutina.id }" />
@@ -52,19 +52,19 @@
 					<sf:errors path="ejerciciosRutina[${status.index}].ejercicio.id" class="text-danger"/>
 				</td>
 				<td>
-					<input type="text" name="ejerciciosRutina[${status.index}].series" value="${ejercicioRutina.getSeries()}"/>
+					<sf:input type="number" path="ejerciciosRutina[${status.index}].series" value="${ejercicioRutina.getSeries()}"/>
 					<sf:errors path="ejerciciosRutina[${status.index}].series" class="text-danger"/>
 				</td>
 				<td>
-					<input type="text" name="ejerciciosRutina[${status.index}].repeticiones" value="${ejercicioRutina.getRepeticiones()}" />
+					<sf:input type="number" path="ejerciciosRutina[${status.index}].repeticiones" value="${ejercicioRutina.getRepeticiones()}" />
 					<sf:errors path="ejerciciosRutina[${status.index}].repeticiones" class="text-danger"/>
 				</td>
 				<td>
-					<input type="text" name="ejerciciosRutina[${status.index}].peso" value="${ejercicioRutina.getPeso()}"/>
+					<sf:input type="number" path="ejerciciosRutina[${status.index}].peso" value="${ejercicioRutina.getPeso()}"/>
 					<sf:errors path="ejerciciosRutina[${status.index}].peso" class="text-danger"/>
 				</td>
 				<td>
-					<input type="text" name="ejerciciosRutina[${status.index}].descanso" value="${ejercicioRutina.getDescanso()}" />
+					<sf:input type="number" path="ejerciciosRutina[${status.index}].descanso" value="${ejercicioRutina.getDescanso()}" />
 					<sf:errors path="ejerciciosRutina[${status.index}].descanso" class="text-danger"/>
 				</td>
 			</tr>

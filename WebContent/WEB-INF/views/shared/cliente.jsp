@@ -13,7 +13,6 @@
 				href='<c:url value="/cliente/${usuario.getId() }/evolucion" />'>Estadísticas</a>
 		</div>
 		<div class="navbar-right">
-			<a class="navbar-brand" href='#'><c:out value="${usuario.getNombre() }"/></a> 
 			<a class="navbar-brand" href='<c:url value="/logout" />'>Salir</a>
 		</div>
 		

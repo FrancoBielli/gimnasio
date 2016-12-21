@@ -19,8 +19,8 @@
 			<label class="col-md-4 control-label" for="nombre">Nombre: </label>
 			<div class="col-md-4">
 				<sf:input path="nombre" type="text" class="form-control input-md"
-					id="nombre" placeholder="Nombre de la Rutina" />
-					<sf:errors path="nombre" class="text-danger"/>
+					id="nombre" placeholder="Nombre de la Rutina"/>
+				<sf:errors path="nombre" class="text-danger"/>
 			</div>
 		</div>
 		<div class="form-group">
