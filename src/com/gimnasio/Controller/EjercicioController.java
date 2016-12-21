@@ -70,6 +70,8 @@ public class EjercicioController {
 			
 			return "redirect:index";
 		}
+		List<GrupoMuscular> gruposMusculares = grupoMuscularService.findAll();
+		model.addAttribute("gruposMusculares", gruposMusculares);
 		return "ejercicio/crear";
 	}
 	
@@ -104,6 +106,8 @@ public class EjercicioController {
 			}
 			return "redirect:index";
 		}
+		List<GrupoMuscular> gruposMusculares = grupoMuscularService.findAll();
+		model.addAttribute("gruposMusculares", gruposMusculares);
 		return "ejercicio/editar";
 	}
 	
