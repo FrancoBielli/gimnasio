@@ -8,10 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.gimnasio.Pojo.Valid.PersistenceGroup;
+import com.gimnasio.Pojo.Valid.SpringFormGroup;
 
 @Entity
 @Table(name="usuario")
@@ -23,14 +25,14 @@ public class Usuario implements Serializable{
 	@GeneratedValue
 	private int id;
 	
-	@NotEmpty
+	@NotEmpty(message = Constants.NOT_EMPTY, groups={PersistenceGroup.class, SpringFormGroup.class})
 	private String email;
 	
-	@NotEmpty
-	@Size(min=4)
+	@NotEmpty(message = Constants.NOT_EMPTY, groups={PersistenceGroup.class, SpringFormGroup.class})
+	@Size(min=4, max=16, message = Constants.SIZE_PASSWORD, groups={SpringFormGroup.class})
 	private String password;
 	
-	@NotEmpty
+	@NotEmpty(message = Constants.NOT_EMPTY, groups={PersistenceGroup.class, SpringFormGroup.class})
 	private String nombre;
 	
 	private String direccion;
@@ -39,7 +41,7 @@ public class Usuario implements Serializable{
 	
 	private Boolean activo;
 	
-	@NotNull
+	@NotEmpty(message = Constants.NOT_EMPTY, groups={PersistenceGroup.class, SpringFormGroup.class})
 	private String permiso;
 	
 	@OneToOne

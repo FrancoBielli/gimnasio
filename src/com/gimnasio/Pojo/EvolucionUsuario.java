@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Min;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -21,15 +21,18 @@ public class EvolucionUsuario {
 	@GeneratedValue
 	private int id;
 	
-	@NotNull
+	@Min(value=1, message = Constants.SIZE_0)
 	private float peso;
 	
+	@Min(value=1, message = Constants.SIZE_0)
 	@Column(name="porcentaje_grasa")
 	private float porcentajeGrasa;
 	
+	@Min(value=1, message = Constants.SIZE_0)
 	@Column(name="porcentaje_musculo")
 	private float porcentajeMusculo;
 	
+	@Min(value=1, message = Constants.SIZE_0)
 	private float imc;
 	
 	@DateTimeFormat(pattern="yyyy/MM/dd")

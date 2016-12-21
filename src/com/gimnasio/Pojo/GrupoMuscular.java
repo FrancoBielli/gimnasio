@@ -18,7 +18,7 @@ public class GrupoMuscular {
 	private int id;
 	
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message = Constants.NOT_EMPTY)
 	private String nombre;
 	
 	public int getId() {

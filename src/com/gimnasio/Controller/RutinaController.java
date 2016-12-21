@@ -202,21 +202,26 @@ public class RutinaController {
 			return "redirect:index";
 		}
 		Rutina rutina = rutinaService.findById(rutinaId);
+		model.addAttribute("rutinaId", rutinaId);
 		model.addAttribute("rutina", rutina);
+		List<Ejercicio> ejercicios = ejercicioService.findAll();
+		model.addAttribute("ejercicios", ejercicios);
+		model.addAttribute("ejerciciosRutinaForm", ejerciciosRutinaForm);
 		return "rutina/asignarEjercicios"; 
 	}
 	
 	@RequestMapping(value="/{id}/editarEjercicios", method = RequestMethod.GET)
 	public String getEditarEjercicios(Model model, @PathVariable("id")int id)
 	{
-		model.addAttribute("rutinaId", id);
+		
 		List<Ejercicio> ejercicios = ejercicioService.findAll();
-		model.addAttribute("ejercicios", ejercicios);
 		Rutina rutina = rutinaService.findById(id);
 		EjerciciosRutinaForm ejerciciosRutinaForm = new EjerciciosRutinaForm();
 		List<EjerciciosRutina> ejerciciosRutina = ejerciciosRutinaService.findByRutina(id);
 		ejerciciosRutinaForm.setEjerciciosRutina(ejerciciosRutina);
+		model.addAttribute("ejercicios", ejercicios);
 		model.addAttribute("ejerciciosRutinaForm", ejerciciosRutinaForm);
+		model.addAttribute("rutinaId", id);
 		model.addAttribute("rutina", rutina);
 		return "rutina/editarEjercicios";
 	}
@@ -226,6 +231,7 @@ public class RutinaController {
 			@ModelAttribute("ejerciciosRutinaForm") @Valid EjerciciosRutinaForm ejerciciosRutinaForm,
 			BindingResult result, Model model, @RequestParam("rutinaId")int rutinaId)
 	{
+		System.out.println(result.toString());
 		if(!result.hasErrors())
 		{
 			List<EjerciciosRutina> ejerciciosRutina = ejerciciosRutinaForm.getEjerciciosRutina();
@@ -241,8 +247,12 @@ public class RutinaController {
 			}
 			return "redirect:index";
 		}
+		List<Ejercicio> ejercicios = ejercicioService.findAll();
+		model.addAttribute("ejercicios", ejercicios);
 		Rutina rutina = rutinaService.findById(rutinaId);
+		model.addAttribute("ejerciciosRutinaForm", ejerciciosRutinaForm);
 		model.addAttribute("rutina", rutina);
+		model.addAttribute("rutinaId", rutina.getId());
 		return "rutina/editarEjercicios"; 
 	}
 	

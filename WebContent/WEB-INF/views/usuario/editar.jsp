@@ -14,7 +14,7 @@
 	<hr>
 	<sf:form method="post" action="${pageContext.request.contextPath}/usuario/editarUsuario" commandName="usuario" cssClass="form-horizontal">
 		<sf:input path="id" type="hidden"/>
-		<sf:input path="permiso" type="hidden"/>
+		<sf:input path="rutina.id" type="hidden"/>
 		
 		<div class="form-group">
 			<label class="col-md-4 control-label" for="nombre">Nombre: </label>

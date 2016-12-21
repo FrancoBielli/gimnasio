@@ -52,7 +52,7 @@
 		</div>
 		
 		
-		<sf:input path="Usuario.id" type="hidden" value="${usuario.getId()}" id="Usuario" />
+		<sf:input path="usuario.id" type="hidden" value="${usuario.getId()}" id="usuario" />
 		
 		<div class="form-group">
 			<label class="col-md-4 control-label"></label>

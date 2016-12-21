@@ -15,8 +15,8 @@
 <c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Editar Estadística</h1>
 	<sf:form method="post" action="${pageContext.request.contextPath}/evolucionUsuario/editarEvolucionUsuario" commandName="evolucionUsuario" cssClass="form-horizontal">
-		<sf:input path="fecha" type="hidden"/>
-		<sf:input path="Usuario.id" type="hidden"/>
+		<input name="fechaHidden" value="${fechaHidden }" type="hidden"/>
+		<sf:input path="usuario.id" type="hidden"/>
 		<sf:input path="id" type="hidden" />
 		
 		<div class="form-group">
@@ -58,7 +58,7 @@
 			<label class="col-md-4 control-label"></label>
 			<div>
 				<input type="submit" value="Aceptar" class="btn btn-success">
-				<a type="button" class="btn btn-warning" href='<c:url value="/evolucionUsuario/${usuario.id}/index" />'>Cancelar</a>
+				<a type="button" class="btn btn-warning" href='<c:url value="/evolucionUsuario/${evolucionUsuario.usuario.id}/index" />'>Cancelar</a>
 			</div>
 		</div>
 		
