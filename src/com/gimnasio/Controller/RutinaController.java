@@ -3,16 +3,18 @@ package com.gimnasio.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.gimnasio.Pojo.Ejercicio;
 import com.gimnasio.Pojo.EjerciciosRutina;
@@ -58,17 +60,21 @@ public class RutinaController {
 	}
 	
 	@RequestMapping(value="crearRutina", method = RequestMethod.POST)
-	public String crearRutina(@ModelAttribute("rutina") Rutina rutina, Model model ){
-		try
+	public String crearRutina(@ModelAttribute("rutina") @Valid Rutina rutina, BindingResult result,
+			Model model ){
+		if(!result.hasErrors())
 		{
-			rutinaService.saveOrUpdate(rutina);
+			try
+			{
+				rutinaService.saveOrUpdate(rutina);
+			}
+			catch(Exception e)
+			{
+				System.out.print(e.toString());
+			}		
+			return "redirect:index";
 		}
-		catch(Exception e)
-		{
-			System.out.print(e.toString());
-		}		
-		
-		return "redirect:index";
+		return "rutina/crear";
 	}
 	
 	@RequestMapping(value = "{id}/editar", method = RequestMethod.GET)
@@ -86,16 +92,21 @@ public class RutinaController {
 	}
 	
 	@RequestMapping(value ="editarRutina", method = RequestMethod.POST)
-	public String editarRutina(Model model, @ModelAttribute("rutina") Rutina rutina)
+	public String editarRutina(Model model, @ModelAttribute("rutina") @Valid Rutina rutina, 
+			BindingResult result)
 	{
-		try
+		if(!result.hasErrors())
 		{
-			rutinaService.saveOrUpdate(rutina);
+			try
+			{
+				rutinaService.saveOrUpdate(rutina);
+			}
+			catch (Exception e) {
+				System.out.println(e.toString());
+			}
+			return "redirect:index";
 		}
-		catch (Exception e) {
-			System.out.println(e.toString());
-		}
-		return "redirect:index";
+		return "rutina/editar";
 	}
 	
 	@RequestMapping(value = "{id}/detalle", method = RequestMethod.GET)
@@ -160,6 +171,7 @@ public class RutinaController {
 			}
 			ejerciciosRutinaForm.setEjerciciosRutina(ejerciciosRutina);
 			model.addAttribute("rutina", rutina);
+			model.addAttribute("rutinaId", rutina.getId());
 			model.addAttribute("ejerciciosRutinaForm", ejerciciosRutinaForm);
 			List<Ejercicio> ejercicios = ejercicioService.findAll();
 			model.addAttribute("ejercicios", ejercicios);
@@ -174,38 +186,64 @@ public class RutinaController {
 
 	@RequestMapping(value="asignarEjercicios", method = RequestMethod.POST)
 	public String AsignarEjercicios(
-			@ModelAttribute("ejerciciosRutinaForm") EjerciciosRutinaForm ejerciciosRutinaForm)
+			@ModelAttribute("ejerciciosRutinaForm") @Valid EjerciciosRutinaForm ejerciciosRutinaForm,
+			BindingResult result, Model model, @RequestParam("rutinaId")int rutinaId)
 	{
-		//System.out.println(ejerciciosRutinaForm+ " " +id);
-		List<EjerciciosRutina> ejerciciosRutina = ejerciciosRutinaForm.getEjerciciosRutina();
-		for(EjerciciosRutina ejerut : ejerciciosRutina)
+		if(!result.hasErrors())
 		{
+			List<EjerciciosRutina> ejerciciosRutina = ejerciciosRutinaForm.getEjerciciosRutina();
 			try
 			{
-				ejerciciosRutinaService.saveOrUpdate(ejerut);
+				ejerciciosRutinaService.guardarLote(ejerciciosRutina);
 			}
 			catch (Exception e) {
 				System.out.println(e.toString());
 			}
-			System.out.println(ejerut.toString());
+			return "redirect:index";
 		}
-		
-		return "redirect:index";
+		Rutina rutina = rutinaService.findById(rutinaId);
+		model.addAttribute("rutina", rutina);
+		return "rutina/asignarEjercicios"; 
 	}
 	
 	@RequestMapping(value="/{id}/editarEjercicios", method = RequestMethod.GET)
-	public ModelAndView getEditarEjercicios(Model model, @PathVariable("id")int id)
+	public String getEditarEjercicios(Model model, @PathVariable("id")int id)
 	{
-		model.addAttribute("idRutina", id);
+		model.addAttribute("rutinaId", id);
 		List<Ejercicio> ejercicios = ejercicioService.findAll();
 		model.addAttribute("ejercicios", ejercicios);
 		Rutina rutina = rutinaService.findById(id);
 		EjerciciosRutinaForm ejerciciosRutinaForm = new EjerciciosRutinaForm();
 		List<EjerciciosRutina> ejerciciosRutina = ejerciciosRutinaService.findByRutina(id);
 		ejerciciosRutinaForm.setEjerciciosRutina(ejerciciosRutina);
-		System.out.println(ejerciciosRutinaForm);
+		model.addAttribute("ejerciciosRutinaForm", ejerciciosRutinaForm);
 		model.addAttribute("rutina", rutina);
-		return new ModelAndView("rutina/editarEjercicios", "ejerciciosRutinaForm", ejerciciosRutinaForm );
+		return "rutina/editarEjercicios";
+	}
+	
+	@RequestMapping(value="editarEjercicios", method = RequestMethod.POST)
+	public String editarEjercicios(
+			@ModelAttribute("ejerciciosRutinaForm") @Valid EjerciciosRutinaForm ejerciciosRutinaForm,
+			BindingResult result, Model model, @RequestParam("rutinaId")int rutinaId)
+	{
+		if(!result.hasErrors())
+		{
+			List<EjerciciosRutina> ejerciciosRutina = ejerciciosRutinaForm.getEjerciciosRutina();
+			try
+			{
+				for(EjerciciosRutina ejerut: ejerciciosRutina)
+				{
+					ejerciciosRutinaService.saveOrUpdate(ejerut);
+				}
+			}
+			catch (Exception e) {
+				System.out.println(e.toString());
+			}
+			return "redirect:index";
+		}
+		Rutina rutina = rutinaService.findById(rutinaId);
+		model.addAttribute("rutina", rutina);
+		return "rutina/editarEjercicios"; 
 	}
 	
 	@RequestMapping(value = "{id}/eliminarEjercicios", method = RequestMethod.GET)

@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="ejercicios_rutina")
@@ -21,13 +23,21 @@ public class EjerciciosRutina implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@NotNull
+	@Min(value=1)
 	private int series;
+	@NotNull
+	@Min(value=1)
 	private int repeticiones;
+	
+	@NotNull
+	@Min(value=1)
 	private int descanso;
 	private int dia;
 	private double peso;
 	
 	@ManyToOne
+	@NotNull
 	@JoinColumn(name="ejercicio_id")
 	private Ejercicio ejercicio;
 	

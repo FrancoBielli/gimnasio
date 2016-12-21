@@ -27,7 +27,6 @@ public class Usuario implements Serializable{
 	private String email;
 	
 	@NotEmpty
-	@NotNull
 	@Size(min=4)
 	private String password;
 	
@@ -40,6 +39,7 @@ public class Usuario implements Serializable{
 	
 	private Boolean activo;
 	
+	@NotNull
 	private String permiso;
 	
 	@OneToOne

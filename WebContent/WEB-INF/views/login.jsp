@@ -5,31 +5,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login</title>
+<link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/bootstrap.min.css" />'>
 </head>
 <body>
+<div class="container">
 	<h1>Ingresar Al Sistema</h1>
 	<hr>
 	<c:if test="${param.error != null }">
 		<span style="color:red;"> !Error !</span>
 	</c:if>
-	<form name='f' action="j_spring_security_check" method='POST'>
-      <table>
-         <tr>
-            <td>Email:</td>
-            <td><input type='text' name='email' value=''></td>
-         </tr>
-         <tr>
-            <td>Password:</td>
-            <td><input type='password' name='password' /></td>
-         </tr>
-         <tr>
-            <td>Recordarme:</td>
-            <td><input type='checkbox' name='_spring_security_remember_me' checked="checked" /></td>
-         </tr>
-         <tr>
-            <td><input name="submit" type="submit" value="Aceptar" /></td>
-         </tr>
-      </table>
+	<form name='f' action="j_spring_security_check" method='POST' class="form form-inline">
+		<div class="form-group">
+		    <label for="Email">Email:</label>
+		    <input type='text' class="form-control" name='email' value=''>
+		</div>
+		<div class="form-group">
+		    <label for="password">Contraseña:</label>
+		    <input type='password' class="form-control" name='password' value=''>
+		</div>
+		<div class="form-check">
+		    <label class="form-check-label">
+		      <input class="form-check-input" name='_spring_security_remember_me' type="checkbox" checked="checked"> Recordarme
+		    </label>
+		  </div>
+		<div class="form-group col-md-12">  
+            <input name="submit" class="btn btn-primary" type="submit" value="Aceptar" />
+         </div>
+      
   </form>
+  </div>
 </body>
 </html>

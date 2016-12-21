@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/bootstrap.min.css" />'>
@@ -15,7 +15,7 @@
     		var data = google.visualization.arrayToDataTable([
     			['Fecha', 'Peso', 'Porcentaje Grasa', 'Porcentaje Músculo', 'IMC'],
     			<c:forEach items="${listEvolucionUsuario}" var="evolucionUsuario">
-    				['<c:out value="${evolucionUsuario.getFecha()}"/> ', 
+    				['<fmt:formatDate pattern="dd-MM-yyyy" value="${evolucionUsuario.getFecha()}" />', 
     					<c:out value="${evolucionUsuario.getPeso()}"/>,
     					<c:out value="${evolucionUsuario.getPorcentajeGrasa()}"/>,
     					<c:out value="${evolucionUsuario.getPorcentajeMusculo()}"/>,
@@ -39,21 +39,42 @@
    	</script>
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="collapse navbar-collapse">
-		  		<ul class="nav navbar-nav">
-		  			<li role="presentation"><a href='<c:url value="/cliente/index" />'>Rutina</a></li>
-		  			<li role="presentation"><a href='<c:url value="/cliente/${usuario.getId()}/evolucion" />'>Estadísticas</a></li>
-				</ul>
-				<a class="navbar-brand navbar-right" role="button" href='<c:url value="/logout"/>'>Salir ${usuario.getNombre()} </a>
-			</div>
-		</div>
-	</div>
-	<br>
-	<br>
-<h1>Evolución de Usuario</h1>
-<hr>
+	<c:import url="/WEB-INF/views/shared/cliente.jsp"></c:import>
+	<h1>Evolución de Usuario</h1>
+	<hr>
 	<div id="linechart_material" style="width: 900px; height: 500px"></div>
-	<a type="button" class="btn btn-info" href='<c:url value="/cliente/index" />'>Volver</a>
+	
+	<hr>
+	<h2>Datos del gráfico</h2>
+	<div>
+		<table class="table table-striped">
+			<tr>
+				<th>Fecha</th>
+				<th>Peso</th>
+				<th>Porcentaje de músculo</th>
+				<th>Porcentaje de grasa</th>
+				<th>Índice de Masa Corporal</th>
+			</tr>
+			<c:forEach items="${listEvolucionUsuario}" var="evolucionUsuario">
+				<tr>
+					<td>
+						<fmt:formatDate pattern="dd-MM-yyyy" value="${evolucionUsuario.getFecha()}" />
+					</td>
+					<td>
+						<c:out value="${evolucionUsuario.getPeso() }"/>
+					</td>
+					<td>
+						<c:out value="${evolucionUsuario.getPorcentajeMusculo() }"/>
+					</td>
+					<td>
+						<c:out value="${evolucionUsuario.getPorcentajeGrasa() }"/>
+					</td>
+					<td>
+						<c:out value="${evolucionUsuario.getImc() }"/>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
+	
 </body>

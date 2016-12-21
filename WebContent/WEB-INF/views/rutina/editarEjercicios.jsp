@@ -11,11 +11,12 @@
 	href='<c:url value="/resources/css/bootstrap.min.css" />'>
 </head>
 <body>
+<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h2>Ejercicios de la Rutina : <c:out value="${rutina.getNombre()}"/> </h2>
 	<c:set var="semana" value="1"/>
 	<sf:form method="POST" modelAttribute="ejerciciosRutinaForm"
-	action="${pageContext.request.contextPath}/rutina/asignarEjercicios">
-	<input type="hidden" name="idRutina" value="${idRutina}">
+	action="${pageContext.request.contextPath}/rutina/editarEjercicios">
+	<input type="hidden" name="rutinaId" value="${idRutina}">
 	<c:forEach items="${ejerciciosRutinaForm.ejerciciosRutina}" var="ejercicioRutina" varStatus="status">
 		<input type="hidden" name="ejerciciosRutina[${status.index}].rutina.id" value="${ejercicioRutina.rutina.id }" />
 		<input type="hidden" name="ejerciciosRutina[${status.index}].id" value="${ejercicioRutina.id }" />
@@ -48,18 +49,23 @@
 					        </sf:option>                     
 					    </c:forEach>
 					</sf:select>
+					<sf:errors path="ejerciciosRutina[${status.index}].ejercicio.id" class="text-danger"/>
 				</td>
 				<td>
 					<input type="text" name="ejerciciosRutina[${status.index}].series" value="${ejercicioRutina.getSeries()}"/>
+					<sf:errors path="ejerciciosRutina[${status.index}].series" class="text-danger"/>
 				</td>
 				<td>
 					<input type="text" name="ejerciciosRutina[${status.index}].repeticiones" value="${ejercicioRutina.getRepeticiones()}" />
+					<sf:errors path="ejerciciosRutina[${status.index}].repeticiones" class="text-danger"/>
 				</td>
 				<td>
 					<input type="text" name="ejerciciosRutina[${status.index}].peso" value="${ejercicioRutina.getPeso()}"/>
+					<sf:errors path="ejerciciosRutina[${status.index}].peso" class="text-danger"/>
 				</td>
 				<td>
 					<input type="text" name="ejerciciosRutina[${status.index}].descanso" value="${ejercicioRutina.getDescanso()}" />
+					<sf:errors path="ejerciciosRutina[${status.index}].descanso" class="text-danger"/>
 				</td>
 			</tr>
 		</table>

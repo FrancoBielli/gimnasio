@@ -49,4 +49,12 @@ public class EjerciciosRutinaService {
 	{
 		ejerciciosRutinaDAO.delete(ejerciciosRutina);
 	}
+	
+	public void guardarLote(List<EjerciciosRutina> listaEjerciciosRutina)
+	{
+		for(EjerciciosRutina ejercicio : listaEjerciciosRutina)
+		{
+			ejerciciosRutinaDAO.save(ejercicio);
+		}
+	}
 }

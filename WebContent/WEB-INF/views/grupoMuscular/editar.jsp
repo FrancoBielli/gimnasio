@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/bootstrap.min.css" />'>
 </head>
 <body>
+<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Editando Grupo Muscular: <strong><c:out value="${grupoMuscular.getNombre()}"/></strong></h1>
 	<hr>
 	<sf:form method="post" action="${pageContext.request.contextPath}/grupoMuscular/editarGrupoMuscular" commandName="grupoMuscular" cssClass="form-horizontal">
@@ -19,6 +20,7 @@
 			<div class="col-md-4">
 				<sf:input path="nombre" type="text" class="form-control input-md"
 					id="nombre" placeholder="Nombre del Grupo Muscular" />
+					<sf:errors path="nombre" class="text-danger"/>
 			</div>
 		</div>
 		<div class="form-group">

@@ -12,6 +12,7 @@
 	
 </head>
 <body>
+<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Nueva Rutina</h1>
 	<sf:form method="post" action="${pageContext.request.contextPath}/rutina/crearRutina" commandName="rutina" cssClass="form-horizontal">
 		<div class="form-group">
@@ -19,6 +20,7 @@
 			<div class="col-md-4">
 				<sf:input path="nombre" type="text" class="form-control input-md"
 					id="nombre" placeholder="Nombre de la Rutina" />
+					<sf:errors path="nombre" class="text-danger"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -26,6 +28,7 @@
 			<div class="col-md-4">
 				<sf:input path="semanas" type="number" class="form-control input-md"
 					id="semanas" placeholder="Semanas de duración" />
+					<sf:errors path="semanas" class="text-danger"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -33,6 +36,7 @@
 			<div class="col-md-4">
 				<sf:input path="dias" type="number" class="form-control input-md"
 					id="dias" placeholder="Días por semana de la rutina" />
+					<sf:errors path="dias" class="text-danger"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -40,6 +44,7 @@
 			<div class="col-md-4">
 				<sf:input path="ejerciciosPorDia" type="number" class="form-control input-md"
 					id="ejerciciosPorDia" placeholder="Cantidad de ejercicios por día" />
+					<sf:errors path="ejerciciosPorDia" class="text-danger"/>
 			</div>
 		</div>
 		<div class="form-group">

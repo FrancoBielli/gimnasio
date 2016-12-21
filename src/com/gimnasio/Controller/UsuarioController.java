@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gimnasio.Pojo.Rutina;
 import com.gimnasio.Pojo.Usuario;
+import com.gimnasio.Service.EvolucionUsuarioService;
 import com.gimnasio.Service.RutinaService;
 import com.gimnasio.Service.UsuarioService;
 
@@ -27,6 +28,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private RutinaService rutinaService;
+	
+	@Autowired
+	private EvolucionUsuarioService evolucionUsuarioService;
 	
 	@RequestMapping(value ="/")
 	public String vacio()
@@ -49,25 +53,7 @@ public class UsuarioController {
 		return "usuario/crear";
 	}
 	
-	@RequestMapping(value="crearUsuario", method = RequestMethod.POST)
-	public String crearUsuario(@ModelAttribute("usuario") @Valid Usuario usuario, Model model,
-			BindingResult result){
-		if(!result.hasErrors())
-		{
-			try
-			{
-				usuario.setActivo(true);
-				usuarioService.saveOrUpdate(usuario);
-			}
-			catch(Exception e)
-			{
-				System.out.print(e.toString());
-			}
-			return "redirect:index";
-		}
-		return "usuario/crear";
-		
-	}
+	
 	
 	@RequestMapping(value = "{id}/editar", method = RequestMethod.GET)
 	public String verEditarUsuario(Model model, @PathVariable("id") int id)
@@ -97,17 +83,43 @@ public class UsuarioController {
 		return "usuario/detalles";
 	}
 	
-	@RequestMapping(value ="editarUsuario", method = RequestMethod.POST)
-	public String editarUsuario(Model model, @ModelAttribute("usuario") Usuario usuario)
-	{
-		try
+	@RequestMapping(value="crearUsuario", method = RequestMethod.POST)
+	public String crearUsuario(@Valid @ModelAttribute("usuario") Usuario usuario, 
+			BindingResult result,Model model){
+		if(!result.hasErrors())
 		{
-			usuarioService.saveOrUpdate(usuario);
+			try
+			{
+				usuario.setActivo(true);
+				usuarioService.saveOrUpdate(usuario);
+				return "redirect:index";
+				
+			}
+			catch(Exception e)
+			{
+				System.out.print(e.toString());
+			}
+			return "redirect:index";
 		}
-		catch (Exception e) {
-			System.out.println(e.toString());
+		return "usuario/crear";
+	}
+	
+	@RequestMapping(value ="editarUsuario", method = RequestMethod.POST)
+	public String editarUsuario(Model model, @ModelAttribute("usuario") @Valid Usuario usuario, BindingResult result)
+	{
+		if(!result.hasErrors())
+		{
+			try
+			{
+				usuarioService.saveOrUpdate(usuario);
+			}
+			catch (Exception e) {
+				System.out.println(e.toString());
+			}
+			return "redirect:index";
 		}
-		return "redirect:index";
+		return "usuario/editar";
+		
 	}
 	
 	
@@ -115,6 +127,7 @@ public class UsuarioController {
 	public String eliminarUsuario(Model model,@PathVariable("id") int id)
 	{
 		Usuario usuario = usuarioService.findById(id);
+		evolucionUsuarioService.deleteByUsuario(usuario);
 		usuarioService.delete(usuario);
 		return "redirect:/usuario/index";
 	}
@@ -146,9 +159,10 @@ public class UsuarioController {
 		}
 		catch (Exception e) {
 			System.out.println(e.toString());
+			usuarioService.updateRutina(usuario, null);
 		}
+		
 		return "redirect:index";
 	}
-	//ToDO terminar con el ABM de usuario para seguir con el resto de los ABM.
 	
 }

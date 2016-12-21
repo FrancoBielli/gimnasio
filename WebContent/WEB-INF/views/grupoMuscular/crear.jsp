@@ -12,6 +12,7 @@
 	
 </head>
 <body>
+<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Nuevo Grupo Muscular</h1>
 	<sf:form method="post" action="${pageContext.request.contextPath}/grupoMuscular/crearGrupoMuscular" commandName="grupoMuscular" cssClass="form-horizontal">
 		<div class="form-group">
@@ -19,6 +20,7 @@
 			<div class="col-md-4">
 				<sf:input path="nombre" type="text" class="form-control input-md"
 					id="nombre" placeholder="Nombre del Grupo Muscular" />
+					<sf:errors path="nombre" class="text-danger"/>
 			</div>
 		</div>
 		<div class="form-group">

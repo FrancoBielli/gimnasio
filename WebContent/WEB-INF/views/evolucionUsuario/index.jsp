@@ -9,6 +9,7 @@
 	<title>Evolución de Usuario</title>
 </head>
 <body>
+<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Estadísticas de "${usuario.getNombre()}"</h1>
 	<hr>
 	<a type="button" class="btn btn-success" href='<c:url value="/evolucionUsuario/${usuario.getId()}/crear" />'>Nuevo</a>

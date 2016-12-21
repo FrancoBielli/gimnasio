@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/bootstrap.min.css" />'>
 </head>
 <body>
+	<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Editando Usuario: <strong><c:out value="${usuario.getNombre()}"/></strong></h1>
 	<hr>
 	<sf:form method="post" action="${pageContext.request.contextPath}/usuario/editarUsuario" commandName="usuario" cssClass="form-horizontal">
@@ -20,17 +21,18 @@
 			<div class="col-md-4">
 				<sf:input path="nombre" type="text" class="form-control input-md"
 					id="nombre" placeholder="Introduce tu Nombre" />
+					<sf:errors path="nombre" class="text-danger"/>
 			</div>
 		</div>
 		
 		<div class="form-group">
 			<label class="col-md-4 control-label" for="email">Email: </label>
 			<div class="col-md-4">
-				<sf:input path="email" type="text" class="form-control input-md"
+				<sf:input path="email" type="email" class="form-control input-md"
 					id="email" placeholder="Introduce tu Email" />
+					<sf:errors path="email" class="text-danger"/>
 					<small>Se usará este correo para ingresar al sistema</small>
 			</div>
-			
 		</div>
 		
 		<div class="form-group">
@@ -38,6 +40,19 @@
 			<div class="col-md-4">
 				<sf:input path="password" type="password" class="form-control input-md"
 					id="password" placeholder="Contraseña" />
+					<sf:errors path="password" class="text-danger"/>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="permiso">Permisos: </label>
+			<div class="col-md-4">
+				<sf:select path="permiso" type="text" class="form-control input-md"
+					id="permiso">
+					<sf:option value=""> </sf:option>
+					<sf:option value="ROLE_ADMIN">Administrador</sf:option>
+					<sf:option value="ROLE_USER">Cliente</sf:option>
+				</sf:select>
 			</div>
 		</div>
 		
@@ -46,6 +61,7 @@
 			<div class="col-md-4">
 				<sf:input path="direccion" type="text" class="form-control input-md"
 					id="direccion" placeholder="Dirección" />
+					<sf:errors path="direccion" cssStyle="color:red"/>
 			</div>
 		</div>
 		
@@ -54,6 +70,7 @@
 			<div class="col-md-4">
 				<sf:input path="telefono" type="text" class="form-control input-md"
 					id="telefono" placeholder="Teléfono" />
+					<sf:errors path="telefono" cssStyle="color:red"/>
 			</div>
 		</div>
 		
@@ -61,6 +78,7 @@
 			<label class="col-md-4 control-label" for="activo">Activo: </label>
 			<div class="col-md-1">
 				<sf:checkbox path="activo" class="form-control" id="activo"/>
+				<sf:errors path="activo" cssStyle="color:red"/>
 			</div>
 		</div>
 		<div class="form-group">

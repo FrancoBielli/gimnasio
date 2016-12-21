@@ -9,21 +9,7 @@
 	<title>Rutinas</title>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="collapse navbar-collapse">
-		  		<ul class="nav navbar-nav">
-		  			<li role="presentation"><a href='<c:url value="/usuario/index" />'>Usuarios</a></li>
-		  			<li role="presentation"><a href='<c:url value="/rutina/index" />'>Rutinas</a></li>
-		  			<li role="presentation"><a href='<c:url value="/ejercicio/index" />'>Ejercicios</a></li>
-		  			<li role="presentation"><a href='<c:url value="/grupoMuscular/index" />'>Grupos Musculares</a></li>
-				</ul>
-				<a class="navbar-brand navbar-right" role="button" href='<c:url value="/logout"/>'>Salir ${usuario.getNombre()} </a>
-			</div>
-		</div>
-	</div>
-	<br>
-	<br>
+<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Lista de Rutinas</h1>
 	<hr>
 	<a type="button" class="btn btn-success" href='<c:url value="/rutina/crear" />'>Nuevo</a>

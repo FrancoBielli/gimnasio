@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -67,7 +68,8 @@ public class EjercicioDAOImpl implements EjercicioDAO {
 	@Override
 	public List<Ejercicio> findAll() {
 		Criteria criteria = getSession().createCriteria(Ejercicio.class)
-				.setMaxResults(100);
+				.setMaxResults(100)
+				.addOrder(Order.asc("grupoMuscular.id"));
 		return criteria.list();
 	}
 
