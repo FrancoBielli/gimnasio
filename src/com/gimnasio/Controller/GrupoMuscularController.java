@@ -2,9 +2,12 @@ package com.gimnasio.Controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,16 +44,23 @@ public class GrupoMuscularController {
 	}
 	
 	@RequestMapping(value="crearGrupoMuscular", method = RequestMethod.POST)
-	public String crearGrupoMuscular(@ModelAttribute("grupoMuscular") GrupoMuscular grupoMuscular, Model model ){
-		try
+	public String crearGrupoMuscular(@ModelAttribute("grupoMuscular") @Valid GrupoMuscular grupoMuscular,
+			BindingResult result,
+			Model model )
+	{
+		if(!result.hasErrors())
 		{
-			grupoMuscularService.saveOrUpdate(grupoMuscular);
+			try
+			{
+				grupoMuscularService.saveOrUpdate(grupoMuscular);
+			}
+			catch(Exception e)
+			{
+				System.out.print(e.toString());
+			}
+			return "redirect:index";
 		}
-		catch(Exception e)
-		{
-			System.out.print(e.toString());
-		}
-		return "redirect:index";
+		return "grupoMuscular/crear";
 	}
 	
 	@RequestMapping(value = "{id}/editar", method = RequestMethod.GET)
@@ -81,24 +91,36 @@ public class GrupoMuscularController {
 		return "grupoMuscular/detalles";
 	}
 	@RequestMapping(value ="editarGrupoMuscular", method = RequestMethod.POST)
-	public String editarGrupoMuscular(Model model, @ModelAttribute("grupoMuscular") GrupoMuscular grupoMuscular)
+	public String editarGrupoMuscular(Model model, 
+			@ModelAttribute("grupoMuscular") @Valid GrupoMuscular grupoMuscular,
+			BindingResult result)
+	{
+		if(!result.hasErrors())
+		{
+			try
+			{
+				grupoMuscularService.saveOrUpdate(grupoMuscular);
+			}
+			catch (Exception e) {
+				System.out.println(e.toString());
+			}
+			return "redirect:index";
+		}
+		return "grupoMuscular/editar";
+	}
+	
+	@RequestMapping(value = "{id}/eliminar", method = RequestMethod.GET)
+	public String eliminarGrupoMuscular(Model model,@PathVariable("id") int id)
 	{
 		try
 		{
-			grupoMuscularService.saveOrUpdate(grupoMuscular);
+			GrupoMuscular grupoMuscular = grupoMuscularService.findById(id);
+			grupoMuscularService.delete(grupoMuscular);
 		}
 		catch (Exception e) {
 			System.out.println(e.toString());
 		}
-		return "redirect:index";
-	}
-	
-	@RequestMapping(value = "{id}/eliminar", method = RequestMethod.POST)
-	public String eliminarGrupoMuscular(Model model,@PathVariable("id") int id)
-	{
-		GrupoMuscular grupoMuscular = grupoMuscularService.findById(id);
-		grupoMuscularService.delete(grupoMuscular);
-		return "redirect:index";
+		return "redirect:/grupoMuscular/index";
 	}
 	
 }

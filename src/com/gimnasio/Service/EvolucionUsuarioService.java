@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.gimnasio.Dao.EvolucionUsuarioDAO;
 import com.gimnasio.Dao.UsuarioDAO;
 import com.gimnasio.Pojo.EvolucionUsuario;
+import com.gimnasio.Pojo.Usuario;
 
 @Service
 public class EvolucionUsuarioService {
@@ -48,6 +49,11 @@ public class EvolucionUsuarioService {
 	public void delete(EvolucionUsuario evolucionUsuario)
 	{
 		evolucionUsuarioDAO.delete(evolucionUsuario);
+	}
+	
+	public void deleteByUsuario(Usuario usuario)
+	{
+		evolucionUsuarioDAO.deleteByUsuario(usuario);
 	}
 
 }

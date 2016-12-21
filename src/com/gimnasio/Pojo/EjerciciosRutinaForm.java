@@ -2,12 +2,18 @@ package com.gimnasio.Pojo;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.gimnasio.Pojo.EjerciciosRutina;
 
 public class EjerciciosRutinaForm {
 
 	private List<EjerciciosRutina> ejerciciosRutina;
 
+	@NotNull
+	@NotEmpty
 	public List<EjerciciosRutina> getEjerciciosRutina() {
 		return ejerciciosRutina;
 	}

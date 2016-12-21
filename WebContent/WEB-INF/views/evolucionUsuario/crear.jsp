@@ -12,6 +12,7 @@
 	
 </head>
 <body>
+<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Nueva Estadística</h1>
 	<sf:form method="post" action="${pageContext.request.contextPath}/evolucionUsuario/crearEvolucionUsuario" commandName="evolucionUsuario" cssClass="form-horizontal">
 		<div class="form-group">
@@ -19,6 +20,7 @@
 			<div class="col-md-4">
 				<sf:input path="peso" type="number" min="0" class="form-control input-md"
 					id="peso" placeholder="Peso del Usuario" />
+					<sf:errors path="peso" class="text-danger"/>
 			</div>
 		</div>
 		
@@ -27,6 +29,7 @@
 			<div class="col-md-4">
 				<sf:input path="porcentajeGrasa" type="number" min="0" max="100" class="form-control input-md"
 					id="porcentajeGrasa" placeholder="Porcentaje de Grasa Corporal" />
+					<sf:errors path="porcentajeGrasa" class="text-danger"/>
 			</div>
 		</div>
 		
@@ -35,6 +38,7 @@
 			<div class="col-md-4">
 				<sf:input path="porcentajeMusculo" type="number" min="0" max="100" class="form-control input-md"
 					id="porcentajeMusculo" placeholder="Porcentaje de Músculo" />
+					<sf:errors path="porcentajeMusculo" class="text-danger"/>
 			</div>
 		</div>
 		
@@ -43,6 +47,7 @@
 			<div class="col-md-4">
 				<sf:input path="imc" type="number" min="0" class="form-control input-md"
 					id="imc" placeholder="Indice de Masa Corporal" />
+					<sf:errors path="imc" class="text-danger"/>
 			</div>
 		</div>
 		

@@ -68,4 +68,13 @@ public class EvolucionUsuarioDAOImpl implements EvolucionUsuarioDAO {
 		return criteria.list();
 	}
 
+	@Override
+	public void deleteByUsuario(Usuario usuario) {
+		List<EvolucionUsuario> evolucionesUsuario = listEvolucionUsuario(usuario);
+		for(EvolucionUsuario evolucion : evolucionesUsuario)
+		{
+			delete(evolucion);
+		}
+	}
+
 }

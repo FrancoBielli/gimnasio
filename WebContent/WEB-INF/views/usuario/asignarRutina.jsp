@@ -12,6 +12,7 @@
 	
 </head>
 <body>
+	<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Asignar Rutina a "${usuario.getNombre() }"</h1>
 	<sf:form method="post" action="${pageContext.request.contextPath}/usuario/asignarRutina" commandName="usuario" cssClass="form-horizontal">
 		<div class="form-group">

@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href='<c:url value="/resources/css/bootstrap.min.css" />'>
 </head>
 <body>
+<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Detalles de Ejercicio: <strong> <c:out value="${ejercicio.getNombre() }"/></strong></h1>
 	<hr>
 	<table class="table">

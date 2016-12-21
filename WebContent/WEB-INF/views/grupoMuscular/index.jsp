@@ -9,6 +9,7 @@
 	<title>Grupos Musculares</title>
 </head>
 <body>
+<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Lista de Grupos Musculares</h1>
 	<hr>
 	<a type="button" class="btn btn-success" href='<c:url value="/grupoMuscular/crear" />'>Nuevo</a>

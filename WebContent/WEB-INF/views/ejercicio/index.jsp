@@ -9,6 +9,7 @@
 	<title>Ejercicios</title>
 </head>
 <body>
+<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Lista de Ejercicios</h1>
 	<hr>
 	<a type="button" class="btn btn-success" href='<c:url value="/ejercicio/crear" />'>Nuevo</a>

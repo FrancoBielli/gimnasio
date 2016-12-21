@@ -74,10 +74,18 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 	@Override
 	public void updateRutina(Usuario usuario, Rutina rutina) {
-		Query query = getSession().createQuery("update Usuario set rutina_id = " + rutina.getId()  +
-				" where id = "+ usuario.getId());
-			int result = query.executeUpdate();
-			System.out.println(result);
+		if(rutina!=null)
+		{
+			Query query = getSession().createQuery("update Usuario set rutina_id = " + rutina.getId()  +
+					" where id = "+ usuario.getId());
+			query.executeUpdate();
+		}
+		else
+		{
+			Query query = getSession().createQuery("update Usuario set rutina_id = " + null  +
+					" where id = "+ usuario.getId());
+			query.executeUpdate();
+		}
 	}
 
 }

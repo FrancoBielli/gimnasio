@@ -12,6 +12,7 @@
 	
 </head>
 <body>
+<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Nuevo Ejercicio</h1>
 	<sf:form method="POST" action="${pageContext.request.contextPath}/ejercicio/crearEjercicio" commandName="ejercicio" cssClass="form-horizontal">
 		<div class="form-group">
@@ -19,6 +20,7 @@
 			<div class="col-md-4">
 				<sf:input path="nombre" type="text" class="form-control input-md"
 					id="nombre" placeholder="Nombre Del Ejercicio" />
+					<sf:errors path="nombre" class="text-danger"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -28,6 +30,7 @@
 					<sf:option value="0" label=" "></sf:option>
 					<sf:options items="${gruposMusculares}" itemValue="id" itemLabel="nombre"/>
 				</sf:select>
+				<sf:errors path="grupoMuscular" class="text-danger"/>
 			</div>
 		</div>
 		<div class="form-group">

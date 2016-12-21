@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="ejercicio")
@@ -18,9 +21,12 @@ public class Ejercicio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@NotNull
+	@NotEmpty
 	private String nombre;
 	
 	@OneToOne
+	@NotNull
 	@JoinColumn(name="grupo_muscular_id")
 	private GrupoMuscular grupoMuscular;
 

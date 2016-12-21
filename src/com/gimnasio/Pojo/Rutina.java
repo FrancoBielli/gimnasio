@@ -5,6 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="rutina")
@@ -13,10 +18,20 @@ public class Rutina {
 	@Id
 	@GeneratedValue
 	private int id;
+	@NotNull
+	@Min(value=1)
 	private int semanas;
+	@NotNull
+	@Min(value=1)
+	@Max(value=5)
 	private int dias;
+	@NotNull
+	@Min(value=4)
+	@Max(value=10)
 	@Column(name="ejercicios_por_dia")
 	private int ejerciciosPorDia;
+	@NotNull
+	@NotEmpty
 	private String nombre;
 	public int getId() {
 		return id;

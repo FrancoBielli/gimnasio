@@ -12,22 +12,23 @@
 	
 </head>
 <body>
+	<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Nuevo Usuario</h1>
 	<sf:form method="post" action="${pageContext.request.contextPath}/usuario/crearUsuario" commandName="usuario" cssClass="form-horizontal">
 		<div class="form-group">
 			<label class="col-md-4 control-label" for="nombre">Nombre: </label>
 			<div class="col-md-4">
 				<sf:input path="nombre" type="text" class="form-control input-md"
-					id="nombre" placeholder="Nombre y Apellido" />
-					<sf:errors path="nombre" cssStyle="color:red"/>
+					id="nombre" placeholder="Nombre y Apellido"/>
+				<sf:errors path="nombre" class="text-danger"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-md-4 control-label" for="email">Email: </label>
 			<div class="col-md-4">
-				<sf:input path="email" type="text" class="form-control input-md"
+				<sf:input path="email" type="email" class="form-control input-md"
 					id="email" placeholder="Introduce tu Email" />
-				<sf:errors path="email" cssStyle="color:red"/>
+					<sf:errors path="email" class="text-danger"/>
 					<small>Se usará este correo para ingresar al sistema</small>
 			</div>
 			
@@ -36,8 +37,8 @@
 			<label class="col-md-4 control-label" for="password">Contraseña: </label>
 			<div class="col-md-4">
 				<sf:input path="password" type="password" class="form-control input-md"
-					id="password" placeholder="Contraseña" />
-					<sf:errors path="password" cssStyle="color:red"/>
+					id="password" placeholder="Contraseña"/>
+					<sf:errors path="password" class="text-danger"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -45,10 +46,10 @@
 			<div class="col-md-4">
 				<sf:select path="permiso" type="text" class="form-control input-md"
 					id="permiso">
+					<sf:option value=""> </sf:option>
 					<sf:option value="ROLE_ADMIN">Administrador</sf:option>
 					<sf:option value="ROLE_USER">Cliente</sf:option>
 				</sf:select>
-				<sf:errors path="permiso" cssStyle="color:red"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -56,7 +57,6 @@
 			<div class="col-md-4">
 				<sf:input path="direccion" type="text" class="form-control input-md"
 					id="direccion" placeholder="Dirección" />
-				<sf:errors path="direccion" cssStyle="color:red"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -64,7 +64,6 @@
 			<div class="col-md-4">
 				<sf:input path="telefono" type="text" class="form-control input-md"
 					id="telefono" placeholder="Teléfono" />
-					<sf:errors path="telefono" cssStyle="color:red"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -74,7 +73,6 @@
 				<input type="submit" value="Aceptar" class="btn btn-success">
 				<a type="button" class="btn btn-warning" href='<c:url value="/usuario/index" />'>Cancelar</a>
 			</div>
-		
 	</sf:form>
 </body>
 </html>

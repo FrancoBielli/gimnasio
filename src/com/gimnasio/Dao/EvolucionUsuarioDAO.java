@@ -10,6 +10,7 @@ public interface EvolucionUsuarioDAO {
 	public void save(EvolucionUsuario evolucionUsuario);
 	public void update(EvolucionUsuario evolucionUsuario);
 	public void delete(EvolucionUsuario evolucionUsuario);
+	public void deleteByUsuario(Usuario usuario);
 	
 	public EvolucionUsuario findById(int id);
 	public List<EvolucionUsuario> listEvolucionUsuario(Usuario usuario);

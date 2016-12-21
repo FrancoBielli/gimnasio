@@ -12,16 +12,17 @@
 	<c:set var="semana" value="1"/>
 </head>
 <body>
+<c:import url="/WEB-INF/views/shared/admin.jsp"></c:import>
 	<h1>Ejercicios de la Rutina : <c:out value="${rutina.getNombre()}"/> </h1>
 	
 	<sf:form method="POST" modelAttribute="ejerciciosRutinaForm"	
 	action="${pageContext.request.contextPath}/rutina/asignarEjercicios">
-	<input type="hidden" name="idRutina" value="${idRutina}">
 	<c:forEach items="${ejerciciosRutinaForm.ejerciciosRutina}" var="ejercicioRutina" varStatus="status">
+	<input type="hidden" name="rutinaId" value="${rutinaId }">
 	<input type="hidden" name="ejerciciosRutina[${status.index}].rutina.id" value="${ejercicioRutina.rutina.id }" />
 	<input type="hidden" name="ejerciciosRutina[${status.index}].dia" value="${ejercicioRutina.getDia()}">
 		<table class="table table-condensed">
-			<c:if test="${status.index % rutina.ejerciciosPorDia == 0 }">
+			<c:if test="${status.index % rutina.getEjerciciosPorDia() == 0 }">
 				<h1>
 					<c:if test="${ejercicioRutina.getDia() % rutina.getDias() == 0 }">
 						Semana
@@ -41,25 +42,31 @@
 			</c:if>				
 			<tr>
 				<td>	
-					<sf:select path="ejerciciosRutina[${status.index}].ejercicio.id" id="ejercicio" >		
+					<sf:select path="ejerciciosRutina[${status.index}].ejercicio.id" id="ejercicio" >
+						<sf:option value="0" label=" "/>		
 						<c:forEach items="${ejercicios}" var="ejercicio">
 					        <sf:option  value="${ejercicio.id}">
 					            <c:out value="${ejercicio.nombre}"/>
 					        </sf:option>                     
 					    </c:forEach>
 					</sf:select>
+					<sf:errors path="ejerciciosRutina[${status.index}].ejercicio.id" class="text-danger"/>
 				</td>
 				<td>
-					<input type="text" name="ejerciciosRutina[${status.index}].series"/>
+					<sf:input type="number" path="ejerciciosRutina[${status.index}].series"/>
+					<sf:errors path="ejerciciosRutina[${status.index}].series" class="text-danger"/>
 				</td>
 				<td>
-					<input type="text" name="ejerciciosRutina[${status.index}].repeticiones" />
+					<sf:input type="number" path="ejerciciosRutina[${status.index}].repeticiones" />
+					<sf:errors path="ejerciciosRutina[${status.index}].repeticiones" class="text-danger"/>
 				</td>
 				<td>
-					<input type="text" name="ejerciciosRutina[${status.index}].peso"/>
+					<sf:input type="number" path="ejerciciosRutina[${status.index}].peso"/>
+					<sf:errors path="ejerciciosRutina[${status.index}].peso" class="text-danger"/>
 				</td>
 				<td>
-					<input type="text" name="ejerciciosRutina[${status.index}].descanso" />
+					<sf:input type="number" path="ejerciciosRutina[${status.index}].descanso" />
+					<sf:errors path="ejerciciosRutina[${status.index}].descanso" class="text-danger"/>
 				</td>
 			</tr>
 		</table>

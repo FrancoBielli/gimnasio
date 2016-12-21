@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="evolucion_usuario")
@@ -18,6 +21,7 @@ public class EvolucionUsuario {
 	@GeneratedValue
 	private int id;
 	
+	@NotNull
 	private float peso;
 	
 	@Column(name="porcentaje_grasa")
@@ -28,6 +32,7 @@ public class EvolucionUsuario {
 	
 	private float imc;
 	
+	@DateTimeFormat(pattern="yyyy/MM/dd")
 	private Timestamp fecha;
 	
 	@ManyToOne
